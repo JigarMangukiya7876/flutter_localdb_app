@@ -11,25 +11,14 @@ class _MyLoginPageState extends State<MyLoginPage> {
   final username_controller = TextEditingController();
   final password_controller = TextEditingController();
 
-  SharedPreferences logindata;
-
-  bool newuser;
-
+  SharedPreferences loginData;
+  bool newUser;
   @override
   void initState() {
     super.initState();
-    check_if_already_login();
   }
 
-  void check_if_already_login() async {
-    logindata = await SharedPreferences.getInstance();
-    newuser = (logindata.getBool('login') ?? true);
-    print(newuser);
-    if (newuser == false) {
-      Navigator.pushReplacement(context,
-          new MaterialPageRoute(builder: (context) => DashBoardScreen()));
-    }
-  }
+
 
   @override
   void dispose() {
@@ -42,7 +31,8 @@ class _MyLoginPageState extends State<MyLoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(" Shared Preferences"),
+        title: Text("Login"),
+        centerTitle: true,
       ),
       body: Center(
         child: Padding(
@@ -78,13 +68,14 @@ class _MyLoginPageState extends State<MyLoginPage> {
               RaisedButton(
                 textColor: Colors.white,
                 color: Colors.blue,
-                onPressed: () {
+                onPressed: () async {
                   String username = username_controller.text;
                   String password = password_controller.text;
                   if (username != '' && password != '') {
                     print('Successfull');
-                    logindata.setBool('login', false);
-                    logindata.setString('username', username);
+                    loginData = await SharedPreferences.getInstance();
+                    loginData.setBool('login', false);
+                    loginData.setString('username', username);
                     Navigator.push(
                         context,
                         MaterialPageRoute(

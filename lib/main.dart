@@ -2,6 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutterinterviewdemo/LoginScreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'DashboardScreen.dart';
+import 'Model/UserData.dart';
+import 'http.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      home: MyLoginPage(),
+      home: SplashScreen(),
     );
   }
 }
@@ -25,10 +30,20 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
+  SharedPreferences loginData;
+
+  bool newUser;
+
   @override
   void initState() {
     super.initState();
-    // callHandler();
+     callHandler();
+     getUser();
+  }
+
+  getUser() async {
+    List<UserData> u = await fetchUsers();
   }
 
   @override
@@ -52,11 +67,19 @@ class _SplashScreenState extends State<SplashScreen> {
 
   callHandler() async {
     var duration = new Duration(seconds: 4);
-    return new Timer(duration, openNextScreen());
+    return new Timer(duration, goToNextScreen());
   }
 
-  openNextScreen() async {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => MyLoginPage()));
+   goToNextScreen() async {
+    loginData = await SharedPreferences.getInstance();
+    newUser = (loginData.getBool('login') ?? true);
+    print(newUser);
+    if (newUser == false) {
+      Navigator.pushReplacement(context,
+          new MaterialPageRoute(builder: (context) => DashBoardScreen()));
+    } else {
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (context) => MyLoginPage()));
+    }
   }
 }
