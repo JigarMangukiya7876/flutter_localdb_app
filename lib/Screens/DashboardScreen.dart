@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutterinterviewdemo/Model/UserData.dart';
-import 'package:flutterinterviewdemo/http.dart';
+import 'package:flutterinterviewdemo/Network/http.dart';
 import 'package:flutterinterviewdemo/utils.dart';
 
 class DashBoardScreen extends StatefulWidget {

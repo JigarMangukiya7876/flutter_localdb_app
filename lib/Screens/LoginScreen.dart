@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterinterviewdemo/DashboardScreen.dart';
+import 'package:flutterinterviewdemo/Screens/DashboardScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MyLoginPage extends StatefulWidget {

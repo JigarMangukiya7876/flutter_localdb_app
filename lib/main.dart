@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutterinterviewdemo/LoginScreen.dart';
+import 'package:flutterinterviewdemo/Screens/LoginScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'DashboardScreen.dart';
+import 'Screens/DashboardScreen.dart';
 import 'Model/UserData.dart';
-import 'http.dart';
+import 'Network/http.dart';
 
 void main() {
   runApp(MyApp());
