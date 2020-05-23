@@ -1,6 +1,6 @@
 import 'package:flutterinterviewdemo/Model/UserData.dart';
-import 'package:flutterinterviewdemo/utils.dart';
 import 'package:http/http.dart' as http;
+import '../Utility/utils.dart';
 
 Future<List<UserData>> fetchUsers() async {
   final response =
@@ -11,6 +11,6 @@ Future<List<UserData>> fetchUsers() async {
     PrefUtils().saveUsers(parseUsers(response.body));
     return parseUsers(response.body);
   } else {
-    throw Exception('Unable to fetch products from the REST API');
+    throw Exception('Unable to fetch users from the REST API');
   }
 }

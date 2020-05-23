@@ -14,9 +14,8 @@ class _EditScreenState extends State<EditScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text('User Details'),
-        ),
+        title: Text('User Details'),
+        centerTitle: true,
       ),
       body: Container(
         padding: const EdgeInsets.all(16),
